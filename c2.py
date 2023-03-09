@@ -99,7 +99,7 @@ def socket_handler():
             #Timeout of 5 seconds
             s.settimeout(5)
             data = repr(s.recv(51200).decode('utf-8'))[1:-1]  # maximum reciver 50MB
-            print(data)
+            print("*******************",data)
             try:
                 response = eval(data)
             except TypeError as e:
@@ -146,6 +146,5 @@ while True: #-------------------------Request Model paramers
                     request = ReqModel(PEERID,CLUSTERID,USERID)
                     TempArray.append(request)
             QUEUE += TempArray
-            print("***********",QUEUE)
             break
 ################################################################
