@@ -15,7 +15,7 @@ MODE = conctionType.KERNEL.value
 
 CLusterIDLoop = True
 ModelParamLoop = True
-TimerOut = 10
+TimerOut = 50  #should be maintain here
 
 USERID = ""
 CLUSTERID = ""
@@ -24,12 +24,14 @@ MODELPARAMETERLIST = []
 ########################################################################
 #------------------------------SAMPLE DATA-----------------------------#
 # MODELPARAMETERS  = "jhjhhkhkhkl"
-genaratedDataPack  = bytes(1024)  # 1 KB
+# genaratedDataPack  = bytes(1024)  # 1 KB
 # genaratedDataPack  = bytes(10*1024)  # 10 KB
 # genaratedDataPack  = bytes(25*1024)  # 25 KB
 # genaratedDataPack  = bytes(100*1024)  # 100 KB
+# genaratedDataPack  = bytes(500*1024)  # 500 KB
 # genaratedDataPack  = bytes(1024*1024)  # 1 MB
 # genaratedDataPack  = bytes(3*1024*1024)  # 3 MB
+genaratedDataPack  = bytes(5*1024*1024)  # 5 MB
 MODELPARAMETERS = base64.b64encode(genaratedDataPack).decode('utf-8')
 ########################################################################
 
@@ -87,5 +89,5 @@ if (MODE == conctionType.SEED.value) | (MODE == conctionType.KERNEL.value):
 ################################################################################
 #-------------------------END----COMMUNICATION SCRIPT--------------------------#
 ################################################################################
-time.sleep(15)
+time.sleep(15) #should be maintain here
 mySocket.close()
