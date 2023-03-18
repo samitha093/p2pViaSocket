@@ -6,8 +6,8 @@ from util import requestModel
 from enumList import conctionType
 
 TIMEOUT = 12 ## 12 => 60s
-# HOST = 'localhost'
-HOST = '13.250.112.193'
+HOST = 'localhost'
+# HOST = '13.250.112.193'
 PORT = 9000
 # MODE = conctionType.SHELL.value
 MODE = conctionType.KERNEL.value
