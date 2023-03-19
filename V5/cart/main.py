@@ -11,7 +11,8 @@ PORT = 9000
 
 ########################################################################
 #------------------------------PEER   DATA-----------------------------#
-MODELPARAMETERS  = bytes(1024)  # 1 KB
+MODELPARAMETERS  = "jhjhhkhkhkl"
+# MODELPARAMETERS  = bytes(1024)  # 1 KB
 # MODELPARAMETERS  = bytes(100*1024)  # 100 KB
 # MODELPARAMETERS  = bytes(1024*1024)  # 1 MB
 # MODELPARAMETERS  = bytes(3*1024*1024)  # 3 MB
@@ -28,8 +29,8 @@ def sigint_handler(signal, frame, mySocket):
     mySocket.close(0)
     sys.exit(0)
 
-def mainFunn(MODE, TIMEOUT = 12, RECIVER_TIMEOUT = 50, SHELL_TIMEOUT = 300):
-    mySocket = peerCom(HOST, PORT, TIMEOUT , MODE)
+def mainFunn(MODE, TIMEOUT = 12, RECIVER_TIMEOUT = 300, SYNC_CONST = 1):
+    mySocket = peerCom(HOST, PORT, TIMEOUT , MODE, SYNC_CONST)
     signal.signal(signal.SIGINT, lambda signal, frame: sigint_handler(signal, frame, mySocket))
     USERID = mySocket.connect()
     mySocket.start_receiver()
@@ -39,7 +40,7 @@ def mainFunn(MODE, TIMEOUT = 12, RECIVER_TIMEOUT = 50, SHELL_TIMEOUT = 300):
     if MODE == conctionType.KERNEL.value:
         MODELPARAMETERLIST = communicationProx(mySocket,USERID,MODE,RECIVER_TIMEOUT,MODELPARAMETERS)
     if MODE == conctionType.SHELL.value:
-        seedProx(mySocket,USERID,MODE,MOBILEMODELPARAMETERS,MODELPARAMETERS,SHELL_TIMEOUT)
+        seedProx(mySocket,USERID,MODE,MOBILEMODELPARAMETERS,MODELPARAMETERS,RECIVER_TIMEOUT)
 
 #Call from Separat thread
 if __name__ == "__main__":

@@ -10,6 +10,7 @@ PORT = 9000        # The port used by the server
 DeviceTable = []
 ClusterTable = {}
 clusterSize = 2
+SYNC_CONST = 1
 
 DATARECORDER = {}
 
@@ -98,7 +99,7 @@ async def handle_client(reader, writer):
             data_chunks = []
             while True:
                 try:
-                    data = await asyncio.wait_for(reader.read(1024*1024), timeout=1)
+                    data = await asyncio.wait_for(reader.read(1024*1024), timeout=SYNC_CONST)
                 except asyncio.TimeoutError:
                     break
                 data_chunks.append(data)

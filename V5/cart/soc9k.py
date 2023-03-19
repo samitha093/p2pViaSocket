@@ -9,7 +9,7 @@ from errorList import errMsg
 
 
 class peerCom:
-    def __init__(self, host, port, timerout, Mtype):
+    def __init__(self, host, port, timerout, Mtype, SYNC_CONST):
         self.host = host
         self.port = port
         self.timerout = timerout
@@ -20,6 +20,7 @@ class peerCom:
         self.SENDQUE = []
         self.RECIVEQUE = []
         self.socketFree = True
+        self.sync_const = 1
 
     def connect(self):
         try:
@@ -48,7 +49,7 @@ class peerCom:
                 data_chunks = []
                 while True:
                     try:
-                        self.socket.settimeout(3)
+                        self.socket.settimeout(self.sync_const)
                         received_data = self.socket.recv(1024*1024)
                         print(errMsg.MSG005.value)
                         continueData = True
